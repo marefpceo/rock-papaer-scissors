@@ -107,4 +107,17 @@ function game(){
     }
 }
 
-console.log(game());
+const btnRock = document.querySelector('#btnRock');
+btnRock.addEventListener('click', () => {
+    console.log(playRound("rock", getComputerChoice()));
+});
+
+const btnPaper = document.querySelector('#btnPaper');
+btnPaper.addEventListener('click', () => {
+    console.log(playRound("paper", getComputerChoice()));
+});
+
+const btnScissor = document.querySelector('#btnScissor');
+btnScissor.addEventListener('click', () => {
+    console.log(playRound("scissor", getComputerChoice()));
+});
