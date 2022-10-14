@@ -85,33 +85,25 @@ function playRound(playerSelection, computerSelection){
 
 
 
-//Game functon that plays 5 rounds and keeps score. Calls inputVerify() helper function to verify player inputs before proceeding. 
+//Game function starts the game. Prompts the player for a selection. Generates the computer's
+//selection. Verifies the player has inputted a valid selection.  
 
 
 function game(){
 
     let count = 0;
-    for (let i = 0; i < 5; i++){
-        const playerSelection = prompt("Choose Rock, Paper, or Scissor");
-        const computerSelection = getComputerChoice();
 
-        let playerLowerCase = playerSelection.toLowerCase();
+    const playerSelection = prompt("Choose Rock, Paper, or Scissor");
+    const computerSelection = getComputerChoice();
 
-        if (inputVerify(playerLowerCase) === false){
-            i--;
-        }else {
-            console.log(playRound(playerLowerCase, computerSelection));
-            count++;
-            console.log("Game:  " + count + "\nPlayer:  " + playerScore + "  " + "Computer:  " + computerScore);
-        }
-    }
+    let playerLowerCase = playerSelection.toLowerCase();
 
-    if (playerScore > computerScore) {
-        return "You won. You beat the computer " + playerScore + " to " + computerScore; 
-    }else if (playerScore === computerScore){
-        return "Tie score! You both won " + playerScore + " " + "games!";
+    if (inputVerify(playerLowerCase) === false){
+        game();
     }else {
-        return "You lost. The computer beat you " + computerScore + " to " + playerScore;
+        console.log(playRound(playerLowerCase, computerSelection));
+        count++;
+        console.log("Game:  " + count + "\nPlayer:  " + playerScore + "  " + "Computer:  " + computerScore);
     }
 }
 
