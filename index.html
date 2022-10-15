@@ -9,10 +9,30 @@
 <body>
     <h1>Rock - Paper - Scissor</h1>
     <div class="container">
-        <button id="btnRock">Rock</button>
-        <button id="btnPaper">Paper</button>
-        <button id="btnScissor">Scissor</button>
 
+        <div class="buttons">
+            <button id="Rock">Rock</button>
+            <button id="Paper">Paper</button>
+            <button id="Scissor">Scissor</button>
+        </div>
+
+        <div class="score">
+            <p id="results"></p>
+            <div id="player">
+                <h2>You</h2>
+                <p>0</p>
+            </div>
+
+            <div id="computer">
+                <h2>Computer</h2>
+                <p>0</p>
+            </div>
+        </div>
+
+        <div>
+            <button id="btnReset">Reset</button>
+        </div>
+        
     </div>
 
     <script src="main.js"></script>

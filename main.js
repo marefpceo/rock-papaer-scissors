@@ -1,123 +1,84 @@
-//rock-paper-scissors game will be played against the computer
-//The game will consist of a single round of game play. 
-
+const buttons = document.querySelectorAll('button');
+const btnReset = document.querySelector('#btnReset');
+const results = document.querySelector('#results');
+const player = document.querySelector('#player').querySelector('p');
+const computer = document.querySelector('#computer').querySelector('p');
 
 let playerScore = 0;
 let computerScore = 0;
 
 
-//Function that randomly makes computer selection
+//Function to generate computer selection
 function getComputerChoice() {
     let x = Math.floor(Math.random() * 3);
-    let selection;
-
+    let selection = '';
+ 
     if (x === 0){
-        selection = "rock";
+        selection = "Rock";
     }
     else if(x === 1){
-        selection = "paper";
+        selection = "Paper";
     }
     else {
-        selection = "scissor";
+        selection = "Scissor";
     }
     return selection;
 }
 
-
-//Helper function to verify player input. Improper inputs return a value of false. 
-function inputVerify(playerInput){
-    if ((playerInput !== "rock") && (playerInput !== "paper") && (playerInput !== "scissor")) {
-        alert("Please enter a valid selection!");
-        return false;
+//Function determines winner and disable selection buttons
+function gameWinner(playerScore, computerScore) {
+    if (playerScore === 5) {
+        disablePlayButtons();
+        results.textContent = `You win!! You won ${playerScore} games first!!`;
+    } else if (computerScore === 5) {
+        disablePlayButtons();
+        results.textContent = `You lose. The computer won ${computerScore} games first`;
     }
 }
-
-
 
 //Function to play a single round of the rock, paper, scissor game
 function playRound(playerSelection, computerSelection){
 
-    switch (playerSelection) {
-        case "rock":
-            if (playerSelection === computerSelection) {
-                return "The game was tied. You both selected Rock";
-            } 
-
-            if (computerSelection === "scissor") {
-                playerScore++;
-                return "You win! Rock beats Scissor!";
-            } else {
-                computerScore++;
-                return "You lose. Paper beats Rock.";
-            }
-            break;
-    
-        case "paper":
-            if (playerSelection === computerSelection) {
-                return "The game was tied. You both selected Paper";
-            } 
-
-            if (computerSelection === "rock") {
-                playerScore++;
-                return "You win! Paper beats Rock!";
-            } else {
-                computerScore++;
-                return "You lose. Scissor beats Paper.";
-            }
-            break;
-
-        case "scissor":
-            if (playerSelection === computerSelection) {
-                return "The game was tied. You both selected Scissor";
-            } 
-
-            if (computerSelection === "paper") {
-                playerScore++;
-                return "You win! Scissor beats Paper!";
-            } else {
-                computerScore++;
-                return "You lose. Rock beats Scissor.";
-            }
-            break;
-    }
+        if (playerSelection === computerSelection){
+            results.textContent = `The game was tied. You both selected ${playerSelection}`;
+        } else if (((playerSelection === "Rock") && (computerSelection === "Scissor")) || 
+                  ((playerSelection === "Paper") && (computerSelection === "Rock")) || 
+                  ((playerSelection === "Scissor") && (computerSelection === "Paper"))) {
+            playerScore++;
+            player.textContent = playerScore;
+            results.textContent = `You scored!! ${playerSelection} 
+                                   beats ${computerSelection}`;
+            gameWinner(playerScore, computerScore);
+        } else {
+            computerScore++;
+            computer.textContent = computerScore;
+            results.textContent = `Computer scored!! ${computerSelection} 
+                                   beats ${playerSelection}`;
+            gameWinner(playerScore, computerScore);
+        }     
 }
 
 
-
-
-//Game function starts the game. Prompts the player for a selection. Generates the computer's
-//selection. Verifies the player has inputted a valid selection.  
-
-
-function game(){
-
-    let count = 0;
-
-    const playerSelection = prompt("Choose Rock, Paper, or Scissor");
-    const computerSelection = getComputerChoice();
-
-    let playerLowerCase = playerSelection.toLowerCase();
-
-    if (inputVerify(playerLowerCase) === false){
-        game();
-    }else {
-        console.log(playRound(playerLowerCase, computerSelection));
-        count++;
-        console.log("Game:  " + count + "\nPlayer:  " + playerScore + "  " + "Computer:  " + computerScore);
-    }
+function disablePlayButtons() {
+    document.getElementById('Rock').disabled = true;
+    document.getElementById('Paper').disabled = true;
+    document.getElementById('Scissor').disabled = true;
 }
 
-const btnRock = document.querySelector('#btnRock');
-btnRock.addEventListener('click', () => {
-    console.log(playRound("rock", getComputerChoice()));
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id, getComputerChoice());
+        // player.textContent = playerScore;
+        // computer.textContent = computerScore;
+    });
 });
 
-const btnPaper = document.querySelector('#btnPaper');
-btnPaper.addEventListener('click', () => {
-    console.log(playRound("paper", getComputerChoice()));
-});
+btnReset.addEventListener('click', () => {
+    results.textContent = '';
+    player.textContent = playerScore = 0;
+    computer.textContent = computerScore = 0;
 
-const btnScissor = document.querySelector('#btnScissor');
-btnScissor.addEventListener('click', () => {
-    console.log(playRound("scissor", getComputerChoice()));
+    buttons.forEach((button) => {
+        button.disabled = false;
+    });
 });
