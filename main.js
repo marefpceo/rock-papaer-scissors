@@ -6,6 +6,8 @@ const computer = document.querySelector('#computer').querySelector('p');
 const playerIcon = document.createElement("img");
 const computerIcon = document.createElement("img");
 const selection = document.getElementById("selection");
+const playerDiv = document.getElementById("player");
+const computerDiv = document.getElementById("computer");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -33,9 +35,11 @@ function getComputerChoice() {
 function gameWinner(playerScore, computerScore) {
     if (playerScore === 5) {
         disablePlayButtons();
+        playerDiv.style.boxShadow = "0 2px 10px 0px #ff7419";
         results.textContent = `You win!! You won ${playerScore} games first!!`;
     } else if (computerScore === 5) {
         disablePlayButtons();
+        computerDiv.style.boxShadow = "0 2px 10px 0px #ff7419";
         results.textContent = `You lose. The computer won ${computerScore} games first`;
     }
 }
@@ -82,6 +86,9 @@ function disablePlayButtons() {
     document.getElementById('Rock').disabled = true;
     document.getElementById('Paper').disabled = true;
     document.getElementById('Scissor').disabled = true;
+    document.getElementById('Rock').style.opacity = "0.3";
+    document.getElementById('Paper').style.opacity = "0.3";
+    document.getElementById('Scissor').style.opacity = "0.3";
 }
 
 
@@ -90,6 +97,7 @@ buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playRound(button.id, getComputerChoice());
     });
+
 });
 
 
@@ -102,7 +110,18 @@ btnReset.addEventListener('click', () => {
     selection.removeChild(playerIcon);
     selection.removeChild(computerIcon);
 
+    playerDiv.style.boxShadow = "0 2px 10px 0px #bcc9df";
+    computerDiv.style.boxShadow = "0 2px 10px 0px #bcc9df";
+
     buttons.forEach((button) => {
         button.disabled = false;
     });
 });
+
+//Displays current year in footer
+let date = new Date().getFullYear();
+const footer = document.querySelector('.footer');
+const footerDiv = document.createElement('div');
+footerDiv.textContent = `Lamar Stevens ${date}`;
+
+footer.appendChild(footerDiv);
