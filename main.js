@@ -46,8 +46,8 @@ function displaySelection(playerSelection, computerSelection) {
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
     
-    playerIcon.src = `/images/${playerChoice}-orange.svg`;
-    computerIcon.src = `/images/${computerChoice}-orange.svg`;
+    playerIcon.src = `images/${playerChoice}-orange.svg`;
+    computerIcon.src = `images/${computerChoice}-orange.svg`;
     selection.appendChild(playerIcon);
     selection.appendChild(computerIcon);
 }
