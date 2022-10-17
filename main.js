@@ -114,6 +114,10 @@ btnReset.addEventListener('click', () => {
     selection.removeChild(playerIcon);
     selection.removeChild(computerIcon);
 
+    document.getElementById('Rock').style.opacity = "1";
+    document.getElementById('Paper').style.opacity = "1";
+    document.getElementById('Scissor').style.opacity = "1";
+
     playerDiv.style.boxShadow = "0 2px 10px 0px #bcc9df";
     computerDiv.style.boxShadow = "0 2px 10px 0px #bcc9df";
 
