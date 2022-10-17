@@ -2,35 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Rock - Paper - Scissor</h1>
     <div class="container">
-
+        <header>
+            <img src="/images/rps-title.svg" alt="Rock-Paper-Scissors">
+        </header>
+        
         <div class="buttons">
-            <button id="Rock">Rock</button>
-            <button id="Paper">Paper</button>
-            <button id="Scissor">Scissor</button>
+            <button id="Rock"><img src="/images/rock.svg" alt="Rock Icon"></button>
+            <button id="Paper"><img src="/images/paper.svg" alt="Paper Icon"></button>
+            <button id="Scissor"><img src="/images/scissor.svg" alt="Scissor Icon"></button>
+        </div>
+
+        <div class="text-display">
+            <p id="results">Make a selection to begin</p>
         </div>
 
         <div class="score">
-            <p id="results"></p>
             <div id="player">
                 <h2>You</h2>
                 <p>0</p>
             </div>
 
+            <div id="selection"></div>
+
             <div id="computer">
-                <h2>Computer</h2>
+                <h2>CPU</h2>
                 <p>0</p>
             </div>
         </div>
 
-        <div>
+        <div class="buttons">
             <button id="btnReset">Reset</button>
+        </div>
+
+        <div class="footer">
+            Copyright &copy; Lamar Stevens 2022
         </div>
         
     </div>
