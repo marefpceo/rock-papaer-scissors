@@ -8,9 +8,13 @@ const computerIcon = document.createElement("img");
 const selection = document.getElementById("selection");
 const playerDiv = document.getElementById("player");
 const computerDiv = document.getElementById("computer");
+const footer = document.querySelector('.footer');
+const footerDiv = document.createElement('div');
 
 let playerScore = 0;
 let computerScore = 0;
+
+let date = new Date().getFullYear();
 
 
 //Function to generate computer selection
@@ -119,9 +123,5 @@ btnReset.addEventListener('click', () => {
 });
 
 //Displays current year in footer
-let date = new Date().getFullYear();
-const footer = document.querySelector('.footer');
-const footerDiv = document.createElement('div');
 footerDiv.textContent = `Lamar Stevens ${date}`;
-
 footer.appendChild(footerDiv);
